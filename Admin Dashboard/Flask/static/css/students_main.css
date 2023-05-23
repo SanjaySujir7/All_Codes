@@ -1,0 +1,152 @@
+.students-imformation-div{
+    height: 450px;
+    background-color: #30365c;
+    padding-top: 10px;
+}
+
+.Page-Main-Sec{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 50px;
+    
+}
+
+.Students-imformation-div-head{
+    border-bottom: 2px solid white;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr 1fr 1fr 0.7fr 1fr 0.7fr 0.5fr 0.6fr 0.4fr;
+    padding-bottom: 20px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.Students-imformation-div-head h3{
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.747);
+}
+
+
+.students-imformation-body{
+    border-bottom: 2px solid rgba(255, 255, 255, 0.247);
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr 1fr 1fr 0.7fr 1fr 0.7fr 0.5fr 0.6fr 0.4fr;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+
+.students-imformation-body h3{
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.747);
+}
+
+
+#Import-Button{
+    width: 100px;
+    height: 30px;
+    margin-right: 10px;
+    background-color: rgb(16, 97, 9);
+    color: rgba(255, 255, 255, 0.719);
+    border: 0;
+    font-weight: bold;
+}
+
+#Import-Button:hover{
+    background-color: green;
+    cursor: pointer;
+}
+
+#Import-Button:active{
+    opacity: 0.3;
+}
+
+.Import-Dialog{
+    width: 400px;
+    height: 300px;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.61);
+    padding: 0;
+}
+
+
+.Import-Dialog-head{
+    display: flex;
+    height: 50px;
+    background-color: antiquewhite;
+    padding-top: 20px;
+}
+
+.Import-Dialog-head h4{
+    margin: 0;
+    padding: 0;
+    font-size: 1.5rem;
+    vertical-align: top;
+}
+
+.Import-Dialog-head div {
+    margin: 0;
+    margin-left: 30px;
+    
+}
+
+.Import-Dialog-head span{
+    font-size: 2rem;
+    margin-left: 10px;
+}
+
+
+#material-symbols-outlined:hover{
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+#material-symbols-outlined:active{
+    opacity: 0.2;
+}
+
+#material-symbols-outlined{
+    margin-right: 10px;
+}
+
+.Import-Dialog-body{
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Dialog-Import-Button{
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color:rgb(34, 34, 139) ;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.Import-Dialog-Foot{
+    height: 50px;
+}
+
+.Dialog-Import-Button:hover{
+    background-color: blue;
+    cursor: pointer;
+}
+
+.Dialog-Import-Button:active{
+    opacity: 0.3;
+}
+
+#material-symbols-outlined-file-open{
+    margin-right: 20px;
+    font-size: 2rem;
+    margin-left: 40px;
+}
+
+#students-imformation-div{
+    height: 300px ;
+    overflow-y: auto;
+}

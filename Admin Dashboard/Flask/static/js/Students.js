@@ -105,4 +105,30 @@ Import_Button.addEventListener("click",function(){
 
 Dialog_Import.addEventListener('click',function(){
     Dialog_Form.submit()
+});
+
+
+fetch('/get-data-csv')
+    .then(response => response.json())
+
+    .then(Each_User => {
+
+    for(let i = 1 ; i < Each_User.length ; i++){
+
+        console.log(Each_User[i])
+        Name = Each_User[i]['Name']
+        Last = Each_User[i]['Last']
+        Phone = Each_User[i]['Phone']
+        Email = Each_User[i]['Email']
+        Register_Number= Each_User[i]['Register_Number']
+        Institution_Name = Each_User[i]['Institution_Name']
+        Course_Name = Each_User[i]['Course_Name']
+        Total = Each_User[i]['Total']
+        Entry_Date = Each_User[i]['Entry_Date']
+        Payment_Status = Each_User[i]['Payment_Status']
+
+        Create_Div(Name,Last,Phone,Email,Register_Number,Institution_Name,Course_Name,Total,Entry_Date,Payment_Status);
+    }
+    
 })
+

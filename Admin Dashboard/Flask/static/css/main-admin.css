@@ -328,3 +328,12 @@ h2{
 #Button-Dialog-cancel:active{
         opacity: 0.5;
 }
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+#students-imformation-div{
+    background-color: aliceblue;
+}

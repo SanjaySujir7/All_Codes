@@ -1,5 +1,5 @@
 
-from flask import Flask,render_template,request,session,redirect
+from flask import Flask, jsonify,render_template,request,session,redirect
 import mysql.connector
 import csv
 
@@ -7,12 +7,71 @@ import csv
 app = Flask(__name__)
 
 
+@app.route('/get-data-csv',methods=['GET'])
+def Get_Csv_Data ():
+    
+    Mydb = mysql.connector.connect(
+        host = "localhost",
+        user = "root",
+        password = "admin",
+        database = 'sis'
+        )
+        
+    cursor = Mydb.cursor()
+    
+    cursor.execute("SELECT * FROM students;")
+    data = cursor.fetchall()
+    
+    if data:
+        Students = [{'exist' : True}]
+        
+        for Each_User in data:
+
+            Name = Each_User[0]
+            Last = Each_User[1]
+            Phone = Each_User[2]
+            Email = Each_User[3]
+            Register_Number= Each_User[4]
+            Institution_Name = Each_User[5]
+            Course_Name = Each_User[6]
+            Total = Each_User[7]
+            Entry_Date = Each_User[8]
+            Payment_Status = Each_User[9]
+            
+            Students.append(
+                {
+                    'Name' : Name,
+                    'Last' : Last,
+                    'Phone' :  Phone,   
+                    'Email' : Email,
+                    'Register_Number' :  Register_Number,
+                    'Institution_Name' : Institution_Name,
+                    'Course_Name' :  Course_Name,
+                    'Total' :  Total,
+                    'Entry_Date' : Entry_Date,
+                    'Payment_Status' : Payment_Status
+                }
+            )
+            
+    else:
+        Students ={'exist' : False}
+
+    
+    return jsonify(Students)
+
+
+@app.route('/students')
+def Students_DashBoard():
+
+    return render_template('Students.html')
+
 @app.route('/import-csv',methods=['POST'])
 def Import_Csv ():
     filename = request.files["csv_file"]
     file_text = filename.read().decode('utf-8')
     
     Reader = csv.DictReader(file_text.splitlines())
+    
     
     data = []
 
