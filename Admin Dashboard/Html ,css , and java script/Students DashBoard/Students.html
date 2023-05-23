@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students | Dash Board</title>
+    <link rel="stylesheet" href="students.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="students_main.css">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+</head>
+<body>
+    <main class="container">
+        <section class="Head">
+            <div class="right-nav-toggle-div" id="right-nav-toggle-div">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="Page-head-div">
+                <h1>DLithe</h1>
+            </div>
+            <div class="Head-Logo-Container">
+                <img src="img/Dlithe logo.png">
+            </div>
+        </section>
+        <section class="Page-Main-Sec">
+            <div class="students-imformation-div" id="students-imformation-div">
+                <div style="display: flex; justify-content :end; margin-right : 15px; ">
+                    <button id="Import-Button">Import</button>
+                </div>
+                <div class="Students-imformation-div-head">
+                    <div>
+                        <h3>First Name</h3>
+                    </div>
+                    <div>
+                        <h3>Last Name</h3>
+                    </div>
+                    <div>
+                        <h3>Phone</h3>
+                    </div>
+                    <div>
+                        <h3>Email</h3>
+                    </div>
+                    <div>
+                        <h3>USN/Register Number</h3>
+                    </div>
+                    <div>
+                        <h3>Instution Name</h3>
+                    </div>
+                    <div>
+                        <h3>Course Name</h3>
+                    </div>
+                    <div>
+                        <h3>Total</h3>
+                    </div>
+                    <div>
+                        <h3>Entry Date</h3>
+                    </div>
+                    <div>
+                        <h3>Payment Status</h3>
+                    </div>
+                </div>
+                <div class="students-imformation-body">
+                    <div>
+                        <h3>Sanjay</h3>
+                    </div>
+                    <div>
+                        <h3>sujir</h3>
+                    </div>
+                    <div>
+                        <h3>(861)838-426-0</h3>
+                    </div>
+                    <div>
+                        <h3>sujirsanjay@gmail.com</h3>
+                    </div>
+                    <div >
+                        <h3>1234567</h3>
+                    </div>
+                    <div>
+                        <h3>test insttution ha ha</h3>
+                    </div>
+                    <div>
+                        <h3>Web Development</h3>
+                    </div>
+                    <div>
+                        <h3>6000</h3>
+                    </div>
+                    <div>
+                        <h3>23-5-2023</h3>
+                    </div>
+                    <div>
+                        <h3>Paid</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <dialog class="Import-Dialog" id="Import-Dialog">
+                <div class="Import-Dialog-head">
+                    <span class="material-symbols-outlined">
+                        upload_file
+                    </span>
+                    <div>
+                        <h4>Upload</h4>
+                    </div>
+                    <div style="flex-grow : 1; display:flex; justify-content:end;">
+                        <span class="material-symbols-outlined" style="font-size: 1.5rem;" id="material-symbols-outlined">
+                            close
+                        </span>
+                    </div>
+                </div>
+                <div class="Import-Dialog-body">
+                    <span class="material-symbols-outlined" id="material-symbols-outlined-file-open">
+                        file_open
+                    </span>
+                    <form id="dialog-import-form">
+                        <input type="file" name="File">
+                    </form>
+                </div>
+                <div class="Import-Dialog-Foot">
+                    <Button class="Dialog-Import-Button">
+                        import
+                    </Button>
+                </div>
+            </dialog>
+        </section>
+    </main>
+    <div class="Side-Bar" id="Side-Bar">
+        <div class="Side-Bar-Span" id="Side-Bar-Span" title="Navigation menu close">
+            <span class="nav-span" style="margin-bottom: 3px;"></span>
+            <span class="nav-span" style="margin-bottom: 3px;"></span>
+            <span class="nav-span" style="margin-bottom: 3px;"></span>
+        </div>
+        <div class="sidebar-logo-container">
+            <div class="Img-logo">
+                <img src="img/Dlithe logo.png">
+            </div>
+        </div>
+        <div class="Content">
+            <div class="Nav-Drawer-list"><span class="material-symbols-outlined">
+                home
+                </span><a href="C:\Users\dell\Desktop\Admin Dashboard\Html ,css , and java script\Admin Dashboard\admin.html">Home</a>&nbsp; &nbsp; &nbsp;</div>
+            <div class="Nav-Drawer-list" style="margin-top: 0px;"><span class="material-symbols-outlined">
+                groups
+                </span>Students
+            </div>
+        </div>
+    </div>
+    <script src="students.js"></script>
+</body>
+</html>
