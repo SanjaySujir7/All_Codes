@@ -9,6 +9,8 @@ Dialog_Close = document.getElementById("material-symbols-outlined");
 let Dialog_Form = document.getElementById("dialog-import-form"),
 Dialog_Import = document.getElementById("Dialog-Import-Button");
 
+let Save_Button = document.getElementById("Save-Button-disable");
+
 
 Nav_bar_Button.addEventListener("click",function(){
     let Nav_bar_Button = document.getElementById("Side-Bar");
@@ -21,10 +23,13 @@ Nav_Button.addEventListener("click",function(){
     console.log('huaa')
     Nav_bar_Button.style.left = "-300px"})
 
+let  random_form_id = 0; random_button_id = 5111; random_text_id = 15000;
 
 function Create_Div(Name,Last,Phone,Email,Usn,Inst,Course,Total,Entry,Payment) {
     let Child = document.createElement('div');
+    Child.id = random_form_id;
     Child.className = 'students-imformation-body';
+    random_form_id++;
 
     Parent_Div.appendChild(Child);
 
@@ -43,12 +48,14 @@ function Create_Div(Name,Last,Phone,Email,Usn,Inst,Course,Total,Entry,Payment) {
     let div3 = document.createElement('div'),
     text3 = document.createElement('h3');
     text3.innerHTML = Phone
+    text3.id = 'phone';
     div3.appendChild(text3);
     Child.appendChild(div3);
 
     let div4 = document.createElement('div'),
     text4 = document.createElement('h3');
     text4.innerHTML = Email
+    text4.id = 'email';
     div4.appendChild(text4);
     Child.appendChild(div4);
 
@@ -67,12 +74,18 @@ function Create_Div(Name,Last,Phone,Email,Usn,Inst,Course,Total,Entry,Payment) {
     let div7 = document.createElement('div'),
     text7 = document.createElement('h3');
     text7.innerHTML = Course
+    text7.title = "Click to edit"
+    text7.contentEditable = 'true';
+    text7.id = "course";
     div7.appendChild(text7);
     Child.appendChild(div7);
 
     let div8 = document.createElement('div'),
     text8 = document.createElement('h3');
     text8.innerHTML = Total
+    text8.title = "Click to edit"
+    text8.contentEditable = 'true';
+    text8.id = "total";
     div8.appendChild(text8);
     Child.appendChild(div8);
 
@@ -85,6 +98,12 @@ function Create_Div(Name,Last,Phone,Email,Usn,Inst,Course,Total,Entry,Payment) {
     let div10 = document.createElement('div'),
     text10 = document.createElement('h3');
     text10.innerHTML = Payment
+    text10.title = "Click to edit"
+    text10.value = 'pay';
+    text10.contentEditable = 'true';
+    text10.id = random_text_id;
+    text10.setAttribute('oninput','textChange(id)')
+
     if(Payment.toLowerCase() == 'paid'){
         text10.style.color = 'green';
     }
@@ -93,6 +112,17 @@ function Create_Div(Name,Last,Phone,Email,Usn,Inst,Course,Total,Entry,Payment) {
     }
     div10.appendChild(text10);
     Child.appendChild(div10);
+
+    let div11 = document.createElement('div'),
+    button = document.createElement('button');
+
+    button.innerText = "save";
+    button.className = "Perticular_div_Button";
+    button.id = random_button_id;
+    random_button_id ++;
+    button.setAttribute('onclick','On_button_Click(id)')
+    div11.appendChild(button);
+    Child.appendChild(div11);
 }
 
 Import_Button.addEventListener("click",function(){
@@ -115,7 +145,7 @@ fetch('/get-data-csv')
 
     for(let i = 1 ; i < Each_User.length ; i++){
 
-        console.log(Each_User[i])
+
         Name = Each_User[i]['Name']
         Last = Each_User[i]['Last']
         Phone = Each_User[i]['Phone']
@@ -132,3 +162,89 @@ fetch('/get-data-csv')
     
 })
 
+
+
+function textChange(id) {
+    let change_id = document.getElementById(id);
+
+    if (change_id.innerText.toLowerCase() == "paid"){
+        change_id.style.color = "green";
+    }
+    else{
+        change_id.style.color = "red";
+
+    }
+
+}
+let Update_form_List = [];
+
+function Save_Button_Turn (){
+    let save_button = document.getElementById("Save-Button-disable");
+    save_button.id = "Save-Button";
+
+    Save_Button.addEventListener("click",function(){
+        console.log('hello')
+        fetch('/update-students-table', {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify(Update_form_List)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data['result']){
+                location.reload();
+            }
+        })
+    })
+}
+
+let Save_Button_Togle = false;
+
+function On_button_Click (id){
+    
+    let Target = document.getElementById("students-imformation-div").children;
+
+    for(let i = 0 ; i < Target.length; i++){
+
+        if (Target[i].children[10].children[0].id == id){
+
+           let Target_Email =  Target[i].children[3].children[0].innerText,
+           Target_Phone = Target[i].children[2].children[0].innerText,
+           Target_Course = Target[i].children[6].children[0].innerText,
+           Target_Total = Target[i].children[7].children[0].innerText,
+           Target_Payment = Target[i].children[9].children[0].innerText;
+            
+            if(Update_form_List.length > 0){
+                Got = false;
+                for(let x = 0 ; x < Update_form_List.length; x ++){
+                        if(Target_Email == Update_form_List[x][1] && Target_Phone == Update_form_List[x][0]){
+    
+
+                            Update_form_List.splice(x,1)
+                            Update_form_List.push([Target_Phone,Target_Email,Target_Course,Target_Total,Target_Payment]);
+                            Got = true;
+                            break;
+                        }
+
+                }
+
+                if (Got == false) {
+                    console.log("no got")
+                    Update_form_List.push([Target_Phone,Target_Email,Target_Course,Target_Total,Target_Payment]);
+                }
+            }
+            else{
+                Update_form_List.push([Target_Phone,Target_Email,Target_Course,Target_Total,Target_Payment]);
+            }
+        }
+
+    }
+
+    if (Save_Button_Togle == false){
+        Save_Button_Turn();
+        Save_Button_Togle = true;
+    }
+
+}

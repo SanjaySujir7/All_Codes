@@ -30,7 +30,11 @@
         </section>
         <section class="Page-Main-Sec">
             <div class="students-imformation-div">
+                <span class="material-symbols-outlined" id="help-icon" title="Click any column in any row to edit it and make sure to save it.">
+                    help
+                </span>
                 <div style="display: flex; justify-content :end; margin-right : 15px; ">
+                    <button id="Save-Button-disable" title="Save button">Save</button>
                     <button id="Import-Button" title="Import button">Import</button>
                 </div>
                 <div class="Students-imformation-div-head">
@@ -89,7 +93,7 @@
                     <span class="material-symbols-outlined" id="material-symbols-outlined-file-open">
                         file_open
                     </span>
-                    <form id="dialog-import-form">
+                    <form id="dialog-import-form" action='/import-file' method='post' enctype="multipart/form-data">
                         <input type="file" name="File">
                     </form>
                 </div>

@@ -1,3 +1,4 @@
 First_Name,Last_Name,Phone,Email,Register_Number,Institution_Name,Course_Name,Total,Entry_Date,Payment_Status
 Sanjay,s,(861)838-426-0,Ssanjay@Gmail.com,1234567,Jain Pu College,Web-Devlopment,4000,20-05-2023,Paid
 Test,t,(123)123-456-7,testt@test.com,123456789,test,iot,5000,19-05-2023,Paid
+Test_another,test,(453)-222-222-1,testAnother@gmail.com,35267256263,test,Machine-Learning,5000,24-05-2023,Not Paid

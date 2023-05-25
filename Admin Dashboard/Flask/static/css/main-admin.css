@@ -104,7 +104,7 @@ h1{
     display: flex;
     align-items: center;
     color: rgb(160, 43, 43);
-    position: relative;
+    
 }
 
 .Institution-div-header{
@@ -146,9 +146,9 @@ h1{
 .Institution-main-imf-div{
     display: flex;
     padding-left: 20px;
-    padding-top: 3px;
+    /* padding-top: 3px; */
     border-bottom: 1px solid rgba(255, 255, 255, 0.24);
-    padding-bottom: 3px;
+    /* padding-bottom: 3px; */
 }
 
 .Inst-city-imf-div {
@@ -253,87 +253,3 @@ h4 {
     opacity: 0.5;
 }
 
-
-#Dialog{
-    height: 400px;
-    width: 500px;
-    border: 0;
-    outline: 0;
-    border-radius: 20px;
-    box-shadow: 1px 1px 50px black;
-}
-
-h2{
-    text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 30px;
-}
-
-.Dialog-main{
-    display: flex;
-    justify-content: center;
-    margin-top: 100px;
-    
-}
-
-#csv-file{
-    margin-left: 100px;
-    
-}
-
-.Button-dialog-div{
-    margin-top: 150px;
-    display: flex;
-    justify-content: end;
-}
-
-#Button-Dialog-ok{
-    background-color: rgb(66, 66, 184);
-    color: white;
-    border: 0;
-    margin-right: 30px;
-    height: 40px;
-    width: 100px;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 10px;
-}
-
-#Button-Dialog-ok:hover{
-    background-color: blue;
-    cursor: pointer;
-}
-
-#Button-Dialog-ok:active{
-    opacity: 0.5;
-}
-
-#Button-Dialog-cancel{
-    color: black;
-    border: 2px solid black;
-    margin-right: 30px;
-    height: 40px;
-    width: 100px;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 10px;
-}
-
-#Button-Dialog-cancel:hover{
-    background-color: gray;
-    cursor: pointer;
-    color: aliceblue;
-}
-
-#Button-Dialog-cancel:active{
-        opacity: 0.5;
-}
-
-a{
-    color: white;
-    text-decoration: none;
-}
-
-#students-imformation-div{
-    background-color: aliceblue;
-}

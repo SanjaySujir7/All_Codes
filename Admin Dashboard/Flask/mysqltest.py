@@ -21,7 +21,12 @@ c = mydb.cursor()
 
 # c.execute("DELETE FROM students")
 
-mydb.commit()
+# mydb.commit()
 
+c.execute("SELECT * FROM students;")
+
+data = c.fetchall()
+
+print(data)
 c.close()
 mydb.close()

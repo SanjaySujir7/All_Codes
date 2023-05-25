@@ -15,7 +15,7 @@
     border-bottom: 2px solid white;
     margin-bottom: 10px;
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr 1fr 1fr 0.7fr 1fr 0.7fr 0.5fr 0.6fr 0.4fr;
+    grid-template-columns: 0.5fr 0.5fr 1fr 1fr 0.7fr 1fr 0.7fr 0.5fr 0.6fr 0.4fr 0.4fr;
     padding-bottom: 20px;
     text-align: center;
     padding-top: 20px;
@@ -30,7 +30,7 @@
 .students-imformation-body{
     border-bottom: 2px solid rgba(255, 255, 255, 0.247);
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr 1fr 1fr 0.7fr 1fr 0.7fr 0.5fr 0.6fr 0.4fr;
+    grid-template-columns: 0.5fr 0.5fr 1fr 1fr 0.7fr 1fr 0.7fr 0.5fr 0.6fr 0.4fr 0.4fr;
     text-align: center;
     padding-bottom: 5px;
 }
@@ -149,4 +149,51 @@
 #students-imformation-div{
     height: 300px ;
     overflow-y: auto;
+}
+
+#Save-Button{
+    width: 100px;
+    height: 30px;
+    margin-right: 10px;
+    background-color: rgb(97, 97, 221);
+    color: rgba(255, 255, 255, 0.719);
+    border: 0;
+    font-weight: bold;
+}
+
+#Save-Button:hover{
+    background-color: blue;
+    cursor: pointer;
+}
+
+#Save-Button:active{
+    opacity: 0.3;
+}
+
+#Save-Button-disable{
+    width: 100px;
+    height: 30px;
+    margin-right: 10px;
+    background-color: rgba(158, 158, 207, 0.219);
+    color: rgba(255, 255, 255, 0.267);
+    border: 0;
+    font-weight: bold;
+}
+
+.Perticular_div_Button{
+    width: 50px;
+    height: 20px;
+    background-color: rgb(97, 97, 221);
+    color: rgba(255, 255, 255, 0.719);
+    border: 0;
+    font-weight: bold;
+}
+
+.Perticular_div_Button:hover{
+    background-color: blue;
+    cursor: pointer;
+}
+
+.Perticular_div_Button:active{
+    opacity: 0.3;
 }
