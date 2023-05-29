@@ -106,3 +106,20 @@ Import_Button.addEventListener("click",function(){
 Dialog_Import.addEventListener('click',function(){
     Dialog_Form.submit()
 })
+
+
+// Filter
+
+let Filter_Dailog = document.getElementById("Filter-Dialog"),
+Filter_Button = document.getElementById("Filter-Button"),
+Filter_CLose = document.getElementById("Filter-Close-Dialog-but");
+
+
+
+Filter_Button.addEventListener('click',function(){
+    Filter_Dailog.showModal();
+})
+
+Filter_CLose.addEventListener('click',function(){
+    Filter_Dailog.close()
+})

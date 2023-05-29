@@ -9,8 +9,21 @@ Dialog_Close = document.getElementById("material-symbols-outlined");
 let Dialog_Form = document.getElementById("dialog-import-form"),
 Dialog_Import = document.getElementById("Dialog-Import-Button");
 
-let Save_Button = document.getElementById("Save-Button-disable");
+let Filter_Dialog_Remove = document.getElementById("Filter-Dialog-Button-Remove"),
+Filter_Colleage_Select = document.getElementById("Filter-Dialog-Select-College"),
+Filter_Course_Select = document.getElementById("Filter-Dialog-Select-Course"),
+Filter_Payment_Select = document.getElementById("Filter-Dialog-Select-Payment");
 
+
+let Filter_Dailog = document.getElementById("Filter-Dialog"),
+Filter_Button = document.getElementById("Filter-Button"),
+Filter_CLose = document.getElementById("Filter-Close-Dialog-but"),
+Filter_Apply = document.getElementById("Filter-Dialog-Button-Apply"),
+Filter_Mode = document.getElementById("Filter-Dialog-Mode"),
+Filter_Year_From = document.getElementById("Filter-Dialog-Select-year-From"),
+Filter_Year_To = document.getElementById("Filter-Dialog-Select-year-To");
+
+let  Filter_List = ['All', 'All', 'yyyy-MM-dd','yyyy-MM-dd','All','All']
 
 Nav_bar_Button.addEventListener("click",function(){
     let Nav_bar_Button = document.getElementById("Side-Bar");
@@ -19,13 +32,44 @@ Nav_bar_Button.addEventListener("click",function(){
 })
 
 Nav_Button.addEventListener("click",function(){
-    let Nav_bar_Button = document.getElementById("Side-Bar");
-    console.log('huaa')
+    let Nav_bar_Button = document.getElementById("Side-Bar");  
     Nav_bar_Button.style.left = "-300px"})
 
 let  random_form_id = 0; random_button_id = 5111; random_text_id = 15000;
 
-function Create_Div(Name,Last,Phone,Email,Usn,Inst,Course,Total,Entry,Payment) {
+
+function Filter_Apply_Function (){
+    let College_filter = Filter_Colleage_Select.value,
+    Course_filter = Filter_Course_Select.value,
+    Mode_Filter = Filter_Mode.value,
+    Payment_filter = Filter_Payment_Select.value;
+
+
+    if(Filter_Year_To.value == "" && Filter_Year_From.value == ""){
+        Filter_List = [College_filter,Course_filter,'yyyy-MM-dd' ,'yyyy-MM-dd',Payment_filter,Mode_Filter]
+    }
+    else{
+        Filter_List = [College_filter,Course_filter,Filter_Year_From.value ,Filter_Year_To.value,Payment_filter,Mode_Filter]
+    }
+
+
+    console.log(Filter_List)
+
+    Parent_Div.innerHTML = "";
+
+    Fetch_Data();
+}
+
+function Filter_Dialog_Remove_Filter (){
+    Filter_Colleage_Select.value = 'All';
+    Filter_Course_Select.value = 'All';
+    Filter_Year_From.value = 'yyyy-MM-dd';
+    Filter_Year_To.value = 'yyyy-MM-dd';
+    Filter_Payment_Select.value = 'All';
+    Filter_Mode.value = "All";
+}
+
+function Create_Div(Name,Last,Phone,Email,Usn,Inst,Mode,Course,Total,Entry,Payment,) {
     let Child = document.createElement('div');
     Child.id = random_form_id;
     Child.className = 'students-imformation-body';
@@ -47,29 +91,35 @@ function Create_Div(Name,Last,Phone,Email,Usn,Inst,Course,Total,Entry,Payment) {
 
     let div3 = document.createElement('div'),
     text3 = document.createElement('h3');
-    text3.innerHTML = Phone
+    text3.innerHTML = Phone;
     text3.id = 'phone';
     div3.appendChild(text3);
     Child.appendChild(div3);
 
     let div4 = document.createElement('div'),
     text4 = document.createElement('h3');
-    text4.innerHTML = Email
+    text4.innerHTML = Email;
     text4.id = 'email';
     div4.appendChild(text4);
     Child.appendChild(div4);
 
     let div5 = document.createElement('div'),
     text5 = document.createElement('h3');
-    text5.innerHTML = Usn
+    text5.innerHTML = Usn;
     div5.appendChild(text5);
     Child.appendChild(div5);
 
     let div6 = document.createElement('div'),
     text6 = document.createElement('h3');
-    text6.innerHTML = Inst
+    text6.innerHTML = Inst;
     div6.appendChild(text6);
     Child.appendChild(div6);
+
+    let div12= document.createElement('div'),
+    text12 = document.createElement('h3');
+    text12.innerHTML = Mode;
+    div12.appendChild(text12);
+    Child.appendChild(div12);
 
     let div7 = document.createElement('div'),
     text7 = document.createElement('h3');
@@ -102,7 +152,8 @@ function Create_Div(Name,Last,Phone,Email,Usn,Inst,Course,Total,Entry,Payment) {
     text10.value = 'pay';
     text10.contentEditable = 'true';
     text10.id = random_text_id;
-    text10.setAttribute('oninput','textChange(id)')
+    text10.setAttribute('oninput','textChange(id)');
+    random_text_id ++;
 
     if(Payment.toLowerCase() == 'paid'){
         text10.style.color = 'green';
@@ -138,29 +189,41 @@ Dialog_Import.addEventListener('click',function(){
 });
 
 
-fetch('/get-data-csv')
-    .then(response => response.json())
+function Fetch_Data (){
 
-    .then(Each_User => {
-
-    for(let i = 1 ; i < Each_User.length ; i++){
-
-
-        Name = Each_User[i]['Name']
-        Last = Each_User[i]['Last']
-        Phone = Each_User[i]['Phone']
-        Email = Each_User[i]['Email']
-        Register_Number= Each_User[i]['Register_Number']
-        Institution_Name = Each_User[i]['Institution_Name']
-        Course_Name = Each_User[i]['Course_Name']
-        Total = Each_User[i]['Total']
-        Entry_Date = Each_User[i]['Entry_Date']
-        Payment_Status = Each_User[i]['Payment_Status']
-
-        Create_Div(Name,Last,Phone,Email,Register_Number,Institution_Name,Course_Name,Total,Entry_Date,Payment_Status);
-    }
+    fetch('/get-data-csv',{
+        method : 'POST',
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify(Filter_List)
+    })
+        .then(response => response.json())
     
-})
+        .then(Each_User => {
+    
+        for(let i = 1 ; i < Each_User.length ; i++){
+    
+    
+            Name = Each_User[i]['Name']
+            Last = Each_User[i]['Last']
+            Phone = Each_User[i]['Phone']
+            Email = Each_User[i]['Email']
+            Register_Number= Each_User[i]['Register_Number']
+            Institution_Name = Each_User[i]['Institution_Name'] 
+            Mode = Each_User[i]["Mode"]
+            Course_Name = Each_User[i]['Course_Name']
+            Total = Each_User[i]['Total']
+            Entry_Date = Each_User[i]['Entry_Date']
+            Payment_Status = Each_User[i]['Payment_Status']
+    
+            Create_Div(Name,Last,Phone,Email,Register_Number,Institution_Name,Mode,Course_Name,Total,Entry_Date,Payment_Status);
+        }
+        
+    })
+
+}
+
 
 
 
@@ -181,9 +244,10 @@ let Update_form_List = [];
 function Save_Button_Turn (){
     let save_button = document.getElementById("Save-Button-disable");
     save_button.id = "Save-Button";
+    
 
-    Save_Button.addEventListener("click",function(){
-        console.log('hello')
+    save_button.addEventListener("click",function(){
+
         fetch('/update-students-table', {
             method : 'POST',
             headers : {
@@ -248,3 +312,21 @@ function On_button_Click (id){
     }
 
 }
+
+
+
+
+Filter_Button.addEventListener('click',function(){
+    Filter_Dailog.showModal();
+})
+
+Filter_CLose.addEventListener('click',function(){
+    Filter_Dailog.close()
+})
+
+Filter_Dialog_Remove.addEventListener('click',Filter_Dialog_Remove_Filter)
+
+Filter_Apply.addEventListener('click',Filter_Apply_Function);
+
+
+Fetch_Data();

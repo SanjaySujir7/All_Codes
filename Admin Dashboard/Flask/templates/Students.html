@@ -30,6 +30,14 @@
         </section>
         <section class="Page-Main-Sec">
             <div class="students-imformation-div">
+                <div class="Filter-Button-Div">
+                    <Button id="Filter-Button">
+                        <span class="material-symbols-outlined">
+                            filter_list
+                        </span>
+                        Filter
+                    </Button>
+                </div>
                 <span class="material-symbols-outlined" id="help-icon" title="Click any column in any row to edit it and make sure to save it.">
                     help
                 </span>
@@ -55,6 +63,9 @@
                     </div>
                     <div>
                         <h3>Instution Name</h3>
+                    </div>
+                    <div>
+                        <h3>Mode</h3>
                     </div>
                     <div>
                         <h3>Course Name</h3>
@@ -101,6 +112,88 @@
                     <Button class="Dialog-Import-Button" id="Dialog-Import-Button">
                         import
                     </Button>
+                </div>
+            </dialog>
+            <dialog class="Filter-Dialog" id="Filter-Dialog">
+                <div class="Filter-Dialog-head">
+                    <div class="Filter-Dialog-Head-Title">
+                        <span class="material-symbols-outlined">
+                            filter_list
+                        </span>
+                        <h5>
+                            Filter By
+                        </h5>
+                    </div>
+                    <div class="Filter-Close-Dialog-Div">
+                        <span class="material-symbols-outlined" id="Filter-Close-Dialog-but">
+                            close
+                        </span>
+                    </div>
+                </div>
+                <div class="Filter-Dialog-body">
+                    <div class="Dialog-Filter-Drop-Box">
+                        <h6>
+                            College
+                        </h6>
+                        <select  class="Filter-Dialog-Select" id="Filter-Dialog-Select-College">
+                            <option value="All">All</option>
+                            <option>Mite</option>
+                            <option>Nitte</option>
+                        </select>
+                    </div>
+                    <div class="Dialog-Filter-Drop-Box">
+                        <h6>
+                            Course Name
+                        </h6>
+                        <select class="Filter-Dialog-Select" id="Filter-Dialog-Select-Course">
+                            <option value="All">All</option>
+                            <option>Web Development</option>
+                            <option>Iot</option>
+                            <option>Machine Learning</option>
+                        </select>
+                    </div>
+                    <div class="Dialog-Filter-Drop-Box">
+                        <h6>
+                            Entry Year From
+                        </h6>
+                        <input type="date" class='Filter-Dialog-Select' id="Filter-Dialog-Select-year-From">
+                    </div>
+                    <div class="Dialog-Filter-Drop-Box">
+                        <h6>
+                            Entry Year TO
+                        </h6>
+                        <input type="date" class='Filter-Dialog-Select' id="Filter-Dialog-Select-year-To">
+                    </div>
+                    <div class="Dialog-Filter-Drop-Box">
+                        <h6>
+                            Payment Status
+                        </h6>
+                        <select  class="Filter-Dialog-Select" id="Filter-Dialog-Select-Payment">
+                            <option value="All">All</option>
+                            <option>Paid</option>
+                            <option>Not Paid</option>
+                        </select>
+                    </div>
+                    <div class="Dialog-Filter-Drop-Box">
+                        <h6>
+                            Mode
+                        </h6>
+                        <select  class="Filter-Dialog-Select" id="Filter-Dialog-Mode">
+                            <option value="All">All</option>
+                            <option>Offline</option>
+                            <option>Online</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="Filter-Dialog-Foot">
+                    <div class="Filter-Dialog-Button-Div">
+                        <button id="Filter-Dialog-Button-Apply">
+                            Apply All
+                        </button>
+                        <button id="Filter-Dialog-Button-Remove">
+                            Remove All Filter
+                        </button>
+                    </div>
                 </div>
             </dialog>
         </section>

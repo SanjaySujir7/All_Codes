@@ -108,3 +108,13 @@ body{
     margin-right: 30px;
     margin-left: 20PX;
 }
+
+.logout-button{
+    position: absolute;
+    bottom: 50px;
+
+}
+
+.logout-button span {
+    margin-left: 20px;
+}

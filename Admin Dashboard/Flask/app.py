@@ -1,17 +1,25 @@
 
-from hmac import new
 from flask import Flask, jsonify,render_template,request,session,redirect
 import mysql.connector
 import csv
-
+from Process import DateTimeProcess
 
 app = Flask(__name__)
+
+
+
+@app.route('/log-out',methods = ['POST'])
+def Log_out ():
+    session.clear()
+    
+    return redirect('/login')
+
 
 
 @app.route('/update-students-table',methods=['POST'])
 def Update_Students_Data():
     details = request.get_json()
-    
+    print('hello')
     if details:
         
         new_list = []
@@ -62,8 +70,16 @@ def Update_Students_Data():
         return jsonify({'result': False})
     
 
-@app.route('/get-data-csv',methods=['GET'])
+@app.route('/get-data-csv',methods=['GET','POST'])
 def Get_Csv_Data ():
+    filters = request.get_json()    
+    College = filters[0]
+    Course  = filters[1]
+    Year_From  = filters[2]
+    Year_To = filters[3]
+    Payment  = filters[4]
+    Mode = filters[5]
+    
     
     Mydb = mysql.connector.connect(
         host = "localhost",
@@ -74,24 +90,74 @@ def Get_Csv_Data ():
         
     cursor = Mydb.cursor()
     
-    cursor.execute("SELECT * FROM students;")
+    query = "SELECT * FROM students"
+    First = True
+    
+    if not "All" in College :
+        if First:
+            query = f"{query} WHERE Inst_Key = '{College}'"
+            First = False
+        else:
+            query = f"{query} AND Inst_Key = '{College}'"
+            
+            
+    if not "All" in Course :
+        if First:
+            query = f"{query} WHERE Course_Name = '{Course}'"
+            First = False
+            
+        else:
+            query = f"{query} AND Course_Name = '{Course}'"
+            
+            
+    if not "All" in Payment:
+        if First:
+            query = f"{query} WHERE  Payment_Status = '{Payment}'"
+            First = False
+        else:
+            query = f"{query} AND Payment_Status = '{Payment}'"
+            
+    if not 'yyyy-MM-dd' in Year_From and not 'yyyy-MM-dd' in Year_To:
+        if First:
+            query = f"{query} WHERE DATE(Entry_Date) BETWEEN '{Year_From}' AND '{Year_To}'"
+            
+        else:
+            query = f"{query} AND DATE(Entry_Date) BETWEEN '{Year_From}' AND '{Year_To}'"
+            
+    if not "All" in Mode:
+        if First:
+            query = f"{query} WHERE Mode = '{Mode}'"
+            First = False
+        else:
+            query = f"{query} AND Mode = '{Mode}'"
+            
+            
+    query = f"{query};"
+    
+    print(query)
+
+    cursor.execute(query) 
+    
     data = cursor.fetchall()
     
     if data:
+        
         Students = [{'exist' : True}]
         
         for Each_User in data:
-
+            
             Name = Each_User[0]
             Last = Each_User[1]
             Phone = Each_User[2]
             Email = Each_User[3]
             Register_Number= Each_User[4]
             Institution_Name = Each_User[5]
-            Course_Name = Each_User[6]
-            Total = Each_User[7]
-            Entry_Date = Each_User[8]
-            Payment_Status = Each_User[9]
+            Mode = Each_User[6]
+            Course_Name = Each_User[7]
+            Total = Each_User[8]
+            Entry_Date = Each_User[9]
+            Payment_Status = Each_User[10]
+            
             
             
             Students.append(
@@ -102,6 +168,7 @@ def Get_Csv_Data ():
                     'Email' : Email,
                     'Register_Number' :  Register_Number,
                     'Institution_Name' : Institution_Name,
+                    'Mode' : Mode,
                     'Course_Name' :  Course_Name,
                     'Total' :  Total,
                     'Entry_Date' : Entry_Date,
@@ -164,6 +231,7 @@ def Import_File ():
                 Total = each_user['Total']
                 Entry_Date = each_user['Entry_Date']
                 Payment_Status = each_user['Payment_Status']
+                Mode = each_user['Mode']
                 
                 cursor.execute("SELECT First_Name FROM students WHERE Phone = %s AND Register_Number = %s;",(Phone,Register_Number,))
                 if_data_exist = cursor.fetchall()
@@ -172,11 +240,15 @@ def Import_File ():
                     pass
                 
                 else:
-                
+                    
+                    Entry_Date = DateTimeProcess(Entry_Date).Get()
+                    
+                    print(Entry_Date)
+                    
                     cursor.execute("""INSERT INTO students (First_Name, Last_Name, Phone,
-                        Email , Register_Number, Institution_Name, Course_Name,
-                        Total, Entry_Date,Payment_Status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);""",(Name,Last,Phone,Email,Register_Number,Institution_Name,
-                        Course_Name,Total,Entry_Date,Payment_Status,))
+                        Email , Register_Number, Institution_Name, Mode,Course_Name,
+                        Total, Entry_Date,Payment_Status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);""",(Name,Last,Phone,Email,Register_Number,Institution_Name,
+                        Mode,Course_Name,Total,Entry_Date,Payment_Status,))
             
             Mydb.commit()
             cursor.close()
@@ -192,7 +264,7 @@ def Import_File ():
         return redirect('/students')
 
 
-@app.route('/admin')
+@app.route('/')
 def Admin_Page ():
     try:
         Name = session['Name']
@@ -203,9 +275,9 @@ def Admin_Page ():
     
     except:
 
-        return redirect('/')
+        return redirect('/login')
 
-@app.route('/')
+@app.route('/login')
 def index ():
     
     try:
@@ -272,12 +344,12 @@ def Login_process():
             except:
                 pass
                 
-            return redirect('/admin')
+            return redirect('/')
         
         else:
             session['login_error'] = "Account Does not Exist !"
             
-            return redirect('/')
+            return redirect('/login')
         
     else:
         session['login_error'] = "Data is invalid !"

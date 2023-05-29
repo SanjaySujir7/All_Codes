@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
     <div class="container">
@@ -40,7 +41,12 @@
             <div class="Content">
                 <div class="Nav-Drawer-list"><i class='bx bxs-home'></i>Home&nbsp; &nbsp; &nbsp;</div>
                 <a href={{url_for('Students_DashBoard')}}><div class="Nav-Drawer-list" style="margin-top: 0px;"><i class='bx bxs-group'></i>Students</div></a>
-
+                <form class="Nav-Drawer-list logout-button" method='post' action='/log-out'  id='logout-form'>
+                    <span class="material-symbols-outlined">
+                        logout
+                    </span>
+                    Log out
+                </form>
             </div>
         </div>
         <main class="Main-sec">
