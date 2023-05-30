@@ -123,3 +123,26 @@ Filter_Button.addEventListener('click',function(){
 Filter_CLose.addEventListener('click',function(){
     Filter_Dailog.close()
 })
+
+
+// Export Option
+
+let Export_Button = document.getElementById('Export-Button'),
+Export_Dialog = document.getElementById('Export-Dalog'),
+Export_Dialog_Close = document.getElementById('export-dialog-close'),
+Export_All_Check = document.getElementById('all'),
+Export_Select_Div = document.getElementById('export-select-box-div');
+
+Export_Button.addEventListener('click',function(){
+    Export_Dialog.showModal();
+})
+
+Export_Dialog_Close.addEventListener('click',function(){
+    Export_Dialog.close();
+})
+
+Export_All_Check.addEventListener('change',function(){
+    for(let i = 0;i < Export_Select_Div.children.length ; i++){
+       Export_Select_Div.children[i].children[1].checked = true;
+    }
+})

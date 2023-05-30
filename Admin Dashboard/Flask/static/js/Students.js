@@ -23,6 +23,10 @@ Filter_Mode = document.getElementById("Filter-Dialog-Mode"),
 Filter_Year_From = document.getElementById("Filter-Dialog-Select-year-From"),
 Filter_Year_To = document.getElementById("Filter-Dialog-Select-year-To");
 
+
+let Select_Colleage_Parent = document.getElementById("Filter-Dialog-Select-College"),
+Select_Course_Parent = document.getElementById("Filter-Dialog-Select-Course");
+
 let  Filter_List = ['All', 'All', 'yyyy-MM-dd','yyyy-MM-dd','All','All']
 
 Nav_bar_Button.addEventListener("click",function(){
@@ -68,6 +72,27 @@ function Filter_Dialog_Remove_Filter (){
     Filter_Payment_Select.value = 'All';
     Filter_Mode.value = "All";
 }
+
+let Exist_Filter_Div = []
+
+function Create_Filter_Div (College,Course){
+    if(!Exist_Filter_Div.includes(College)){
+        let Option_Colleage = document.createElement("option");
+        Option_Colleage.innerText = College;
+        Select_Colleage_Parent.appendChild(Option_Colleage);
+        Exist_Filter_Div.push(College);
+    }
+
+    if(!Exist_Filter_Div.includes(Course)){
+        let Option_Course= document.createElement("option");
+        Option_Course.innerText = Course;
+        Select_Course_Parent.appendChild(Option_Course);
+        Exist_Filter_Div.push(Course);
+    }
+
+    
+}
+
 
 function Create_Div(Name,Last,Phone,Email,Usn,Inst,Mode,Course,Total,Entry,Payment,) {
     let Child = document.createElement('div');
@@ -179,10 +204,10 @@ function Create_Div(Name,Last,Phone,Email,Usn,Inst,Mode,Course,Total,Entry,Payme
 Import_Button.addEventListener("click",function(){
     Import_Dialog.showModal();
 
-    Dialog_Close.addEventListener("click",function(){
-        Import_Dialog.close()
-    })
 })
+
+Dialog_Close.addEventListener("click",function(){
+    Import_Dialog.close()})
 
 Dialog_Import.addEventListener('click',function(){
     Dialog_Form.submit()
@@ -216,8 +241,10 @@ function Fetch_Data (){
             Total = Each_User[i]['Total']
             Entry_Date = Each_User[i]['Entry_Date']
             Payment_Status = Each_User[i]['Payment_Status']
+            Inst_Key = Each_User[i]['Inst_Key']
     
             Create_Div(Name,Last,Phone,Email,Register_Number,Institution_Name,Mode,Course_Name,Total,Entry_Date,Payment_Status);
+            Create_Filter_Div(Inst_Key,Course_Name);
         }
         
     })
@@ -330,3 +357,14 @@ Filter_Apply.addEventListener('click',Filter_Apply_Function);
 
 
 Fetch_Data();
+
+document.addEventListener('keydown',function(event){
+    if(event.shiftKey && event.key =='F'){
+        Filter_Dailog.showModal();
+    }
+
+    if(event.ctrlKey && event.key =='i'){
+        Import_Dialog.showModal();
+    }
+
+})

@@ -290,3 +290,165 @@
 .Filter-Close-Dialog-Div span:active{
     opacity: 0.5;
 }
+
+/* This EXport section */
+
+#Export-Button{
+    margin-left: 20px;
+    width: 100px;
+    height: 32px;
+    color: rgba(238, 230, 230, 0.993);
+    background-color: rgb(91, 51, 124);
+    border: 0;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#Export-Button span{
+    margin-bottom: 3px;
+    font-size: 1rem;
+    margin-right: 5px;
+    vertical-align: top;
+}
+
+#Export-Button:hover{
+    background-color: rgb(134, 25, 207);
+    cursor: pointer;
+}
+
+#Export-Button:active{
+    opacity: 0.4;
+}
+
+#Export-Dalog {
+    width: 400px;
+    height: 430px;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    box-shadow: 1px 1px 60px rgba(0, 0, 0, 0.24);
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.export-dialog-head-title{
+    display: flex;
+    align-items: center;
+    height: 80px;
+    color: white;
+    flex: 1;
+}
+
+.export-dialog-head-title h5 {
+    font-size: 1.7rem;
+    margin-left: 10px;
+}
+
+.export-dialog-head-title span{
+    font-size: 1.8rem;vertical-align: top;
+    margin-left: 20px;
+}
+
+.export-dailog-head{
+    height: 80px;
+    background-color: #9a2ebb;
+    display: flex;
+}
+
+#export-dialog-close{
+    color: white;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+#export-dialog-close:hover{
+    color: rgb(138, 128, 128);
+    cursor: pointer;
+}
+
+#export-dialog-close:active{
+    opacity: 0.3;
+}
+
+.dialog-export-body-select{
+    display: grid;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#Select-export{
+    width: 200px;
+    height: 35px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.dialog-export-body-select h4{
+    font-size: 0.8rem;
+}
+
+
+.export-select-box-div{
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 20px;
+}
+
+.export-select-box-div label{
+    font-size: 0.7rem;
+}
+
+.export-select-box-div div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#export-dialog-download{
+    width: 130px;
+    height: 35px;
+    border: none;
+    color: white;
+    background-color: blue;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+#export-dialog-download:hover{
+    background-color: rgb(67, 67, 151);
+    cursor: pointer;
+}
+
+#export-dialog-download:active{
+    opacity: 0.3;
+}
+
+#export-dialog-export{
+    width: 130px;
+    height: 35px;
+    border: none;
+    color: white;
+    background-color: rgb(140, 0, 255);
+    font-weight: bold;
+}
+
+#export-dialog-export:hover{
+    background-color: rgb(107, 27, 87);
+    cursor: pointer;
+}
+
+#export-dialog-export:active{
+    opacity: 0.3;
+}
+
+.export-dialog-foot{
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+}

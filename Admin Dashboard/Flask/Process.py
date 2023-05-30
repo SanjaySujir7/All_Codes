@@ -1,3 +1,4 @@
+import inst_Name
 
 class DateTimeProcess:
     def __init__(self,Date_Time):
@@ -15,13 +16,43 @@ class DateTimeProcess:
         
         return f"{Date_Split[2]}-{Date_Split[1]}-{Date_Split[0]} {TIme}"
     
-    def Get_Csv_Date(self):
-        Date_Time = self.Date_Time
+
+
+class Inst_Process:
+    def __init__ (self,reg,inst):
+        self.reg = reg 
+        self.inst = inst
         
-        Split = Date_Time.split()
         
-        Date = Split[0]
+    def Process (self):  
+        Reg_Num = self.reg
         
-        Date_Split = Date.split('-')
+        New_reg = ""
         
-        return f"{Date_Split[2]}-{Date_Split[1]}-{Date_Split[0]}"
+        for all in Reg_Num:
+            
+            if not all.isdigit():
+                if New_reg =="":
+                    New_reg = all
+                else:
+                    New_reg = f"{New_reg}{all}"
+            
+        if New_reg == "":
+            return "undefined"
+        
+        
+        if not New_reg in inst_Name.Students_Inst_Names:
+
+            dict = inst_Name.Students_Inst_Names
+            
+            dict[New_reg] = self.inst
+            
+            with open("inst_Name.py",'w') as file:
+                file.write(f'Students_Inst_Names = {dict}')
+                
+            return self.inst
+        
+        else:
+            return inst_Name.Students_Inst_Names[New_reg]
+            
+        

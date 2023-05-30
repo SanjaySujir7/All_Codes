@@ -2,7 +2,7 @@
 from flask import Flask, jsonify,render_template,request,session,redirect
 import mysql.connector
 import csv
-from Process import DateTimeProcess
+from Process import DateTimeProcess,Inst_Process
 
 app = Flask(__name__)
 
@@ -157,6 +157,7 @@ def Get_Csv_Data ():
             Total = Each_User[8]
             Entry_Date = Each_User[9]
             Payment_Status = Each_User[10]
+            Inst_Key = Each_User[11]
             
             
             
@@ -172,7 +173,8 @@ def Get_Csv_Data ():
                     'Course_Name' :  Course_Name,
                     'Total' :  Total,
                     'Entry_Date' : Entry_Date,
-                    'Payment_Status' : Payment_Status
+                    'Payment_Status' : Payment_Status,
+                    'Inst_Key' : Inst_Key
                 }
                 
             )
@@ -242,13 +244,12 @@ def Import_File ():
                 else:
                     
                     Entry_Date = DateTimeProcess(Entry_Date).Get()
-                    
-                    print(Entry_Date)
+                    Inst_Key = Inst_Process(Register_Number,Institution_Name).Process()
                     
                     cursor.execute("""INSERT INTO students (First_Name, Last_Name, Phone,
                         Email , Register_Number, Institution_Name, Mode,Course_Name,
-                        Total, Entry_Date,Payment_Status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);""",(Name,Last,Phone,Email,Register_Number,Institution_Name,
-                        Mode,Course_Name,Total,Entry_Date,Payment_Status,))
+                        Total, Entry_Date,Payment_Status,Inst_Key) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);""",(Name,Last,Phone,Email,Register_Number,Institution_Name,
+                        Mode,Course_Name,Total,Entry_Date,Payment_Status,Inst_Key))
             
             Mydb.commit()
             cursor.close()

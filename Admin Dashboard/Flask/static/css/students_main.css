@@ -229,8 +229,8 @@
 }
 
 #Filter-Dialog{
-    width: 400px;
-    height: 400px;
+    width: 460px;
+    height: 450px;
     border-radius: 10px;
     border: 0;
     outline: 0;
@@ -242,6 +242,7 @@
     align-items: center;
     height: 50px;
     flex: 1;
+
 }
 
 .Filter-Dialog-head{
@@ -268,7 +269,9 @@
     gap: 20px;
     padding-left: 20px;
     padding-right: 20px;
-    margin-bottom: 50px;
+    overflow: auto;
+    height: 280px;
+    margin-bottom: 20px;
 }
 
 .Dialog-Filter-Drop-Box{
