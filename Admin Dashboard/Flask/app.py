@@ -1,12 +1,54 @@
 
-from flask import Flask, jsonify,render_template,request,session,redirect
+from flask import Flask, jsonify,render_template,request, send_file,session,redirect
 import mysql.connector
 import csv
 from Process import DateTimeProcess,Inst_Process
+from time import time
+
 
 app = Flask(__name__)
 
 
+@app.route('/export-list',methods = ['POST'])
+def Export_Data ():
+    
+    Data = request.get_json()
+    
+    Export_List = Data['Export_List']
+    Export_Limit = Data['Export_Limit']
+    Export_Format = Data['Export_Format']
+    
+    if 'Csv' in Export_Format:
+        Headings = ['First_Name', 'Last_Name', 'Phone', 'Email','Register_Number', 'Institution_Name','Mode','Course_Name','Total','Entry_Date','Payment_Status']
+        
+        New_Heading = []
+        New_Export_List = []
+        
+        for i in range(11):
+            if i in Export_Limit:
+                New_Heading.append(Headings[i])
+        
+        
+                
+        for all in Export_List:
+            temp_list = []
+            
+            for all_heding in New_Heading:
+                temp_list.append(all[all_heding])
+            
+            New_Export_List.append(temp_list)
+            
+            
+        filename = 'Students_info.csv'
+        
+        with open(filename,'w',newline='') as file:
+            csv_write = csv.writer(file)
+            
+            csv_write.writerow(New_Heading)
+            csv_write.writerows(New_Export_List)
+                    
+        return send_file(filename,as_attachment=True)
+        
 
 @app.route('/log-out',methods = ['POST'])
 def Log_out ():
@@ -19,7 +61,7 @@ def Log_out ():
 @app.route('/update-students-table',methods=['POST'])
 def Update_Students_Data():
     details = request.get_json()
-    print('hello')
+
     if details:
         
         new_list = []
@@ -141,9 +183,7 @@ def Get_Csv_Data ():
     data = cursor.fetchall()
     
     if data:
-        
-        Students = [{'exist' : True}]
-        
+        Students = []
         for Each_User in data:
             
             Name = Each_User[0]
@@ -163,8 +203,8 @@ def Get_Csv_Data ():
             
             Students.append(
                 {
-                    'Name' : Name,
-                    'Last' : Last,
+                    'First_Name' : Name,
+                    'Last_Name' : Last,
                     'Phone' :  Phone,   
                     'Email' : Email,
                     'Register_Number' :  Register_Number,
@@ -200,6 +240,7 @@ def Import_File ():
     filename = request.files["File"]
     
     if '.csv' in filename.filename:
+        start_time = time()
         
         file_text = filename.read().decode('utf-8')
         Reader = csv.DictReader(file_text.splitlines())
@@ -235,7 +276,7 @@ def Import_File ():
                 Payment_Status = each_user['Payment_Status']
                 Mode = each_user['Mode']
                 
-                cursor.execute("SELECT First_Name FROM students WHERE Phone = %s AND Register_Number = %s;",(Phone,Register_Number,))
+                cursor.execute("SELECT First_Name FROM students WHERE Phone = %s AND Register_Number = %s ;",(Phone,Register_Number,))
                 if_data_exist = cursor.fetchall()
                 
                 if if_data_exist :
@@ -255,6 +296,7 @@ def Import_File ():
             cursor.close()
             Mydb.close()
             
+            print("end Time : ",time()-start_time)
             return redirect('/students')
         
         else:
@@ -282,7 +324,6 @@ def Admin_Page ():
 def index ():
     
     try:
-        print(session['login_error'])
         if session["login_error"] == 'none':
             error = 'none'
         
@@ -330,10 +371,16 @@ def Login_process():
             data = c.fetchall()
             
             if data :
-                session['Name'] = data[0][0]
-                session['Last'] = data[0][1]
-                session['Email'] = data[0][2]
-                Name_Email_found = True
+    
+                Name = data[0][0]
+                Pass = data[0][3]
+                
+                if Name == Name_Email.lower() and Pass == Password:
+    
+                    session['Name'] = data[0][0]
+                    session['Last'] = data[0][1]
+                    session['Email'] = data[0][2]
+                    Name_Email_found = True
         
         c.close()
         mydb.close()

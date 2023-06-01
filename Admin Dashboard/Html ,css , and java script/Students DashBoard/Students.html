@@ -45,6 +45,11 @@
                     </button>
                 </div>
                 <div style="display: flex; justify-content :end; margin-right : 15px; ">
+                    <button id="Add-student-Button" title="Add Student">
+                        <span class="material-symbols-outlined">
+                            person_add
+                        </span>
+                    </button>
                     <button id="Import-Button">Import</button>
                 </div>
                 <dialog class="Filter-Dialog" id="Filter-Dialog">
@@ -299,6 +304,72 @@
                     <button id="export-dialog-export">
                         Export
                     </button>
+                </div>
+            </dialog>
+            <dialog id="Student-add-dailog">
+                <div class="Person-add-div-head">
+                    <div class="person-add-head-title">
+                        <span class="material-symbols-outlined">
+                            person_add
+                        </span>
+                         <h3>
+                            Add Student
+                         </h3>
+                    </div>
+                    <span class="material-symbols-outlined" id="Add-Students-close-Dialog">
+                        close
+                    </span>
+                </div>
+                <div class="Person-add-Div-Body"> 
+                    <div class="Person-Add-Input-Field-Div">
+                        <input type="text" placeholder="First Name" class="Person-Add-Input-Field">
+                    </div>
+                    <div class="Person-Add-Input-Field-Div">
+                        <input type="text" placeholder="Last Name" class="Person-Add-Input-Field">
+                    </div>
+                    <div class="Person-Add-Input-Field-Div">
+                        <input type="text" placeholder="Phone" class="Person-Add-Input-Field">
+                    </div>
+                    <div class="Person-Add-Input-Field-Div">
+                        <input type="text" placeholder="Email" class="Person-Add-Input-Field">
+                    </div>
+                    <div class="Person-Add-Input-Field-Div">
+                        <input type="text" placeholder="Register Number/USN" class="Person-Add-Input-Field">
+                    </div>
+                    <div class="Person-Add-Input-Field-Div">
+                        <input type="text" placeholder="Institution Name" class="Person-Add-Input-Field">
+                    </div>
+                </div>
+                <div>
+                    <div style="display: grid; grid-template-columns:1fr 1fr 1fr; margin-top : 30px;padding-left:10px;">
+                        <label for="Add-Student-Dropbox-Id" style="font-size: 0.7rem; font-weight : bold;">Course Name</label>
+                        <label for="Add-Student-Dropbox-Id" style="font-size: 0.7rem; font-weight : bold; text-align:center;">Total</label>
+                        <label for="Add-Student-Dropbox-Id" style="font-size: 0.7rem; font-weight : bold; text-align:center;">Mode</label>
+                    </div>
+                    <div class="Person-Add-Input-Field-Div" style="display: grid; grid-template-columns : 1fr 1fr 1fr;margin-top : 10px;">
+        
+                        <select class="Add-Student-DropBox" id="Add-Student-Dropbox-Id">
+                            <option>Select</option>
+                            <option>Web Development</option>
+                            <option>Web Development | 3 weeks</option>
+                            <option>Iot</option>
+                            <option>Cyber Security l0</option>
+                            <option>Cyber Security l1</option>
+                        </select>
+                        <input type="text" placeholder="Total" id="Select-Course-name-Add-Student-Text-Box">
+                        <select class="Add-Student-DropBox" style="width :80px; margin-left : 20px;">
+                            <option>Offline</option>
+                            <option>Online</option>
+                        </select>
+                        <div style="margin-top: 20px;">
+                            <input type="radio" name="radio-add" id="student-add-radio-ofline"> <label style="font-weight: bold;font-size : 0.7rem; vertical-align :top;" for="student-add-radio-ofline">Offline</label>
+                            <br>
+                            <input type="radio" name="radio-add" id="student-add-radio-onlinr"> <label style="font-weight: bold;font-size : 0.7rem; vertical-align :top;" for="student-add-radio-onlinr">Online</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="Person-add-Div-footer">
+
                 </div>
             </dialog>
         </section>

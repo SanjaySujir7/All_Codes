@@ -27,7 +27,20 @@ Filter_Year_To = document.getElementById("Filter-Dialog-Select-year-To");
 let Select_Colleage_Parent = document.getElementById("Filter-Dialog-Select-College"),
 Select_Course_Parent = document.getElementById("Filter-Dialog-Select-Course");
 
+let Export_Button = document.getElementById('Export-Button'),
+Export_Dialog = document.getElementById('Export-Dalog'),
+Export_Dialog_Close = document.getElementById('export-dialog-close'),
+Export_All_Check = document.getElementById('all'),
+Export_Select_Div = document.getElementById('export-select-box-div'),
+Export_Dialog_Export = document.getElementById('export-dialog-export'),
+Export_Download_Link = document.getElementById("download-export-link"),
+Export_Download_Button = document.getElementById("export-dialog-download-disabled");
+
 let  Filter_List = ['All', 'All', 'yyyy-MM-dd','yyyy-MM-dd','All','All']
+
+let Export_List = [];
+let Export_List_limit = []
+
 
 Nav_bar_Button.addEventListener("click",function(){
     let Nav_bar_Button = document.getElementById("Side-Bar");
@@ -38,8 +51,6 @@ Nav_bar_Button.addEventListener("click",function(){
 Nav_Button.addEventListener("click",function(){
     let Nav_bar_Button = document.getElementById("Side-Bar");  
     Nav_bar_Button.style.left = "-300px"})
-
-let  random_form_id = 0; random_button_id = 5111; random_text_id = 15000;
 
 
 function Filter_Apply_Function (){
@@ -93,9 +104,11 @@ function Create_Filter_Div (College,Course){
     
 }
 
+let  random_form_id = 0; random_button_id = 10000000; random_text_id = 1000000000;
 
 function Create_Div(Name,Last,Phone,Email,Usn,Inst,Mode,Course,Total,Entry,Payment,) {
     let Child = document.createElement('div');
+
     Child.id = random_form_id;
     Child.className = 'students-imformation-body';
     random_form_id++;
@@ -226,12 +239,14 @@ function Fetch_Data (){
         .then(response => response.json())
     
         .then(Each_User => {
+
+            Export_List = Each_User;
     
-        for(let i = 1 ; i < Each_User.length ; i++){
+        for(let i = 0 ; i < Each_User.length ; i++){
     
     
-            Name = Each_User[i]['Name']
-            Last = Each_User[i]['Last']
+            Name = Each_User[i]['First_Name']
+            Last = Each_User[i]['Last_Name']
             Phone = Each_User[i]['Phone']
             Email = Each_User[i]['Email']
             Register_Number= Each_User[i]['Register_Number']
@@ -274,7 +289,7 @@ function Save_Button_Turn (){
     
 
     save_button.addEventListener("click",function(){
-
+        console.log(Update_form_List)
         fetch('/update-students-table', {
             method : 'POST',
             headers : {
@@ -299,13 +314,12 @@ function On_button_Click (id){
 
     for(let i = 0 ; i < Target.length; i++){
 
-        if (Target[i].children[10].children[0].id == id){
-
+        if (Target[i].children[11].children[0].id == id){
            let Target_Email =  Target[i].children[3].children[0].innerText,
            Target_Phone = Target[i].children[2].children[0].innerText,
-           Target_Course = Target[i].children[6].children[0].innerText,
-           Target_Total = Target[i].children[7].children[0].innerText,
-           Target_Payment = Target[i].children[9].children[0].innerText;
+           Target_Course = Target[i].children[7].children[0].innerText,
+           Target_Total = Target[i].children[8].children[0].innerText,
+           Target_Payment = Target[i].children[10].children[0].innerText;
             
             if(Update_form_List.length > 0){
                 Got = false;
@@ -329,8 +343,8 @@ function On_button_Click (id){
             else{
                 Update_form_List.push([Target_Phone,Target_Email,Target_Course,Target_Total,Target_Payment]);
             }
+            break;
         }
-
     }
 
     if (Save_Button_Togle == false){
@@ -368,3 +382,49 @@ document.addEventListener('keydown',function(event){
     }
 
 })
+
+
+
+
+Export_Button.addEventListener('click',function(){
+    Export_Dialog.showModal();
+})
+
+Export_Dialog_Close.addEventListener('click',function(){
+    Export_Dialog.close();
+})
+
+Export_All_Check.addEventListener('change',function(){
+    for(let i = 0;i < Export_Select_Div.children.length ; i++){
+       Export_Select_Div.children[i].children[1].checked = true;
+    }
+})
+
+
+let ALl_Radio = Export_Select_Div.querySelectorAll("input[type='checkbox']");
+
+Export_Dialog_Export.addEventListener("click",function(){
+    Export_List_limit = []
+
+    for(let i = 0;i < ALl_Radio.length ; i++){
+        if(ALl_Radio[i].checked){
+            Export_List_limit.push(i);
+        }
+    }
+    console.log(Export_List_limit)
+    fetch('/export-list',{
+        method : 'POST',
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify({'Export_List' : Export_List,'Export_Limit' : Export_List_limit,'Export_Format' : document.getElementById('Select-export').value })
+    })
+
+    .then(response => response.blob())
+    .then(file => {
+        const file_url = URL.createObjectURL(file);
+        Export_Download_Link.href = file_url;
+        Export_Download_Button.id = "export-dialog-download";
+        Export_Download_Link.download = 'Students_info.csv';
+    })
+});

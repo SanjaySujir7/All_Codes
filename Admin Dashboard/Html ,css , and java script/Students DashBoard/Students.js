@@ -146,3 +146,19 @@ Export_All_Check.addEventListener('change',function(){
        Export_Select_Div.children[i].children[1].checked = true;
     }
 })
+
+
+// Student Add 
+
+let Student_Add_Dialog = document.getElementById('Student-add-dailog'),
+Students_Add_Button = document.getElementById("Add-student-Button"),
+Students_Add_CLose_Button= document.getElementById("Add-Students-close-Dialog");
+
+
+Students_Add_Button.addEventListener("click",function(){
+    Student_Add_Dialog.showModal();
+});
+
+Students_Add_CLose_Button.addEventListener('click',function(){
+    Student_Add_Dialog.close();
+})

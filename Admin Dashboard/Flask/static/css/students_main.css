@@ -342,3 +342,316 @@
 .Filter-Close-Dialog-Div span:active{
     opacity: 0.5;
 }
+
+
+.Filter-Button-Div{
+    position: absolute;
+    left: 150px;
+    display: flex;
+    align-items: center;
+
+}
+
+#Filter-Button{
+    display: flex;
+    align-items: center;
+    background-color: gray;
+    border: 0;
+    color: white;
+    width: 90px;
+    justify-content: center;
+    height: 30px;
+    transition: 0.2s;
+}
+
+#Filter-Button:hover{
+    background-color: rgb(173, 165, 165);
+    cursor: pointer;
+}
+
+#Filter-Button:active{
+    opacity: 0.5;
+}
+
+#Filter-Dialog{
+    width: 500px;
+    height: 450px;
+    border-radius: 10px;
+    border: 0;
+    outline: 0;
+    box-shadow: 1px 1px 60px rgba(0, 0, 0, 0.267);
+}
+
+.Filter-Dialog-Head-Title{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    flex: 1;
+}
+
+.Filter-Dialog-head{
+    display: flex;
+    margin-top: 0;
+    height: 70px;
+}
+
+.Filter-Dialog-Head-Title h5{
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
+.Filter-Dialog-Head-Title span {
+    font-size: 2rem ;
+    margin-left: 10px;
+}
+
+.Filter-Dialog-body{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.Dialog-Filter-Drop-Box{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#Filter-Dialog-Select{
+    width: 180px;
+    height: 40px;
+    text-align: center;
+}
+
+.Dialog-Filter-Drop-Box h6{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.Filter-Dialog-Foot {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    height: 60px;
+}
+
+#Filter-Dialog-Button-Apply{
+    width: 130px;
+    height: 40px;
+    border: 0;
+    color: white;
+    background-color: rgb(30, 30, 83);
+}
+
+#Filter-Dialog-Button-Remove{
+    width: 130px;
+    height: 40px;
+    border: 0;
+    color: rgb(17, 16, 16);
+    font-weight: bold;
+    border: 2px solid black;
+    margin-left: 20px;
+}
+
+#Filter-Dialog-Button-Apply:hover{
+    background-color: rgb(37, 37, 151);
+    cursor: pointer;
+}
+
+#Filter-Dialog-Button-Apply:active{
+    opacity: 0.5;
+}
+
+#Filter-Dialog-Button-Remove:hover{
+    background-color: gray;
+    color: white;
+}
+
+#Filter-Dialog-Button-Remove:active{
+    opacity: 0.5;
+}
+
+.Filter-Close-Dialog-Div span:hover{
+    color: gray;
+    cursor: pointer;
+}
+
+.Filter-Close-Dialog-Div span:active{
+    opacity: 0.5;
+}
+
+
+#Export-Button{
+    margin-left: 20px;
+    width: 100px;
+    height: 32px;
+    color: rgba(238, 230, 230, 0.993);
+    background-color: rgb(91, 51, 124);
+    border: 0;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#Export-Button span{
+    margin-bottom: 3px;
+    font-size: 1rem;
+    margin-right: 5px;
+    vertical-align: top;
+}
+
+#Export-Button:hover{
+    background-color: rgb(134, 25, 207);
+    cursor: pointer;
+}
+
+#Export-Button:active{
+    opacity: 0.4;
+}
+
+#Export-Dalog {
+    width: 400px;
+    height: 430px;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    box-shadow: 1px 1px 60px rgba(0, 0, 0, 0.24);
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.export-dialog-head-title{
+    display: flex;
+    align-items: center;
+    height: 80px;
+    color: white;
+    flex: 1;
+}
+
+.export-dialog-head-title h5 {
+    font-size: 1.7rem;
+    margin-left: 10px;
+}
+
+.export-dialog-head-title span{
+    font-size: 1.8rem;vertical-align: top;
+    margin-left: 20px;
+}
+
+.export-dailog-head{
+    height: 80px;
+    background-color: #9a2ebb;
+    display: flex;
+}
+
+#export-dialog-close{
+    color: white;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+#export-dialog-close:hover{
+    color: rgb(138, 128, 128);
+    cursor: pointer;
+}
+
+#export-dialog-close:active{
+    opacity: 0.3;
+}
+
+.dialog-export-body-select{
+    display: grid;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#Select-export{
+    width: 200px;
+    height: 35px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.dialog-export-body-select h4{
+    font-size: 0.8rem;
+}
+
+
+.export-select-box-div{
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 20px;
+}
+
+.export-select-box-div label{
+    font-size: 0.7rem;
+}
+
+.export-select-box-div div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#export-dialog-download{
+    width: 130px;
+    height: 35px;
+    border: none;
+    color: white;
+    background-color: blue;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+#export-dialog-download-disabled{
+    width: 130px;
+    height: 35px;
+    border: none;
+    color: white;
+    background-color: rgb(63, 63, 70);
+    opacity: 0.5;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+#export-dialog-download:hover{
+    background-color: rgb(67, 67, 151);
+    cursor: pointer;
+}
+
+#export-dialog-download:active{
+    opacity: 0.3;
+}
+
+#export-dialog-export{
+    width: 130px;
+    height: 35px;
+    border: none;
+    color: white;
+    background-color: rgb(140, 0, 255);
+    font-weight: bold;
+}
+
+#export-dialog-export:hover{
+    background-color: rgb(107, 27, 87);
+    cursor: pointer;
+}
+
+#export-dialog-export:active{
+    opacity: 0.3;
+}
+
+.export-dialog-foot{
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+}
