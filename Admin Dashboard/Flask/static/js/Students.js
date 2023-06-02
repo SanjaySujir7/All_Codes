@@ -36,6 +36,10 @@ Export_Dialog_Export = document.getElementById('export-dialog-export'),
 Export_Download_Link = document.getElementById("download-export-link"),
 Export_Download_Button = document.getElementById("export-dialog-download-disabled");
 
+let Student_Add_Dialog = document.getElementById('Student-add-dailog'),
+Students_Add_Button = document.getElementById("Add-student-Button"),
+Students_Add_CLose_Button= document.getElementById("Add-Students-close-Dialog");
+
 let  Filter_List = ['All', 'All', 'yyyy-MM-dd','yyyy-MM-dd','All','All']
 
 let Export_List = [];
@@ -428,3 +432,15 @@ Export_Dialog_Export.addEventListener("click",function(){
         Export_Download_Link.download = 'Students_info.csv';
     })
 });
+
+
+
+
+
+Students_Add_Button.addEventListener("click",function(){
+    Student_Add_Dialog.showModal();
+});
+
+Students_Add_CLose_Button.addEventListener('click',function(){
+    Student_Add_Dialog.close();
+})

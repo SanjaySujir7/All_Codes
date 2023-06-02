@@ -320,27 +320,33 @@
                         close
                     </span>
                 </div>
-                <div class="Person-add-Div-Body"> 
+                <form class="Person-add-Div-Body"> 
                     <div class="Person-Add-Input-Field-Div">
-                        <input type="text" placeholder="First Name" class="Person-Add-Input-Field">
+                        <input type="text" placeholder="First Name" class="Person-Add-Input-Field" id="person-add-text-Name"  required>
+                        <label for="person-add-text-Name"  class="Input-Error-Display-Students-Add">Please Enter Student's First Name</label>
                     </div>
                     <div class="Person-Add-Input-Field-Div">
-                        <input type="text" placeholder="Last Name" class="Person-Add-Input-Field">
+                        <input type="text" placeholder="Last Name" class="Person-Add-Input-Field"  id="person-add-text-Last"  required>
+                        <label for="person-add-text-Name"  class="Input-Error-Display-Students-Add">Please Enter Student's Last Name</label>
                     </div>
                     <div class="Person-Add-Input-Field-Div">
-                        <input type="text" placeholder="Phone" class="Person-Add-Input-Field">
+                        <input type="text" placeholder="Phone" class="Person-Add-Input-Field"  id="person-add-text-Phone"  required>
+                        <label for="person-add-text-Name"  class="Input-Error-Display-Students-Add">Please Enter Student's Phone Number</label>
                     </div>
                     <div class="Person-Add-Input-Field-Div">
-                        <input type="text" placeholder="Email" class="Person-Add-Input-Field">
+                        <input type="text" placeholder="Email" class="Person-Add-Input-Field"  id="person-add-text-Email"  required>
+                        <label for="person-add-text-Name" class="Input-Error-Display-Students-Add">Please Enter Student's Email</label>
                     </div>
                     <div class="Person-Add-Input-Field-Div">
-                        <input type="text" placeholder="Register Number/USN" class="Person-Add-Input-Field">
+                        <input type="text" placeholder="Register Number/USN" class="Person-Add-Input-Field"  id="person-add-text-Reg" required>
+                        <label for="person-add-text-Name" class="Input-Error-Display-Students-Add">Please Enter Student's Register Number</label>
                     </div>
                     <div class="Person-Add-Input-Field-Div">
-                        <input type="text" placeholder="Institution Name" class="Person-Add-Input-Field">
+                        <input type="text" placeholder="Institution Name" class="Person-Add-Input-Field"  id="person-add-text-Inst"  required>
+                        <label for="person-add-text-Name" class="Input-Error-Display-Students-Add">Please Enter Student's Institution Name</label>
                     </div>
-                </div>
-                <div>
+                </form>
+                <form>
                     <div style="display: grid; grid-template-columns:1fr 1fr 1fr; margin-top : 30px;padding-left:10px;">
                         <label for="Add-Student-Dropbox-Id" style="font-size: 0.7rem; font-weight : bold;">Course Name</label>
                         <label for="Add-Student-Dropbox-Id" style="font-size: 0.7rem; font-weight : bold; text-align:center;">Total</label>
@@ -362,14 +368,16 @@
                             <option>Online</option>
                         </select>
                         <div style="margin-top: 20px;">
-                            <input type="radio" name="radio-add" id="student-add-radio-ofline"> <label style="font-weight: bold;font-size : 0.7rem; vertical-align :top;" for="student-add-radio-ofline">Offline</label>
+                            <input type="radio" name="radio-add" class="student-add-radio-online"> <label style="font-weight: bold;font-size : 0.7rem; vertical-align :top;" for="student-add-radio-ofline">Not Paid</label>
                             <br>
-                            <input type="radio" name="radio-add" id="student-add-radio-onlinr"> <label style="font-weight: bold;font-size : 0.7rem; vertical-align :top;" for="student-add-radio-onlinr">Online</label>
+                            <input type="radio" name="radio-add" class="student-add-radio-online"> <label style="font-weight: bold;font-size : 0.7rem; vertical-align :top;" for="student-add-radio-onlinr">Paid</label>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="Person-add-Div-footer">
-
+                    <Button id="Person-add-Dialog-Add-Button">
+                        Add Student 
+                    </Button>
                 </div>
             </dialog>
         </section>
@@ -396,5 +404,6 @@
         </div>
     </div>
     <script src="students.js"></script>
+    <script src="Students_Form.js"></script>
 </body>
 </html>

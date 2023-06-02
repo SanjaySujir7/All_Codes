@@ -9,6 +9,15 @@ from time import time
 app = Flask(__name__)
 
 
+@app.route('/add-student')
+def Add_Student ():
+    Data = request.get_json()
+    
+    print(Data)
+    return jsonify({'result' : True})
+
+
+
 @app.route('/export-list',methods = ['POST'])
 def Export_Data ():
     

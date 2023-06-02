@@ -478,7 +478,7 @@
 
 #Student-add-dailog{
     width: 400px;
-    height: 450px;
+    height: 460px;
     border: 0;
     outline: 0;
 
@@ -558,3 +558,35 @@
     text-align: center;
 }
 
+#Person-add-Dialog-Add-Button{
+    width: 70%;
+    height: 40px;
+    margin-top: 10px;
+    border: 0px;
+    background-color: #0d7265;
+    color: white;
+    
+}
+
+.Person-add-Div-footer {
+    display: flex;
+    justify-content: center;
+
+}
+
+#Person-add-Dialog-Add-Button:active{
+    opacity: 0.5;
+}
+
+#Person-add-Dialog-Add-Button:hover{
+    background-color: #29a897;
+    cursor: pointer;
+}
+
+.Input-Error-Display-Students-Add{
+    color: red;
+    font-size: 0.6rem;
+    position: absolute;
+    margin-top: 50px;
+    display: none;
+}
