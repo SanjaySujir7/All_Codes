@@ -4,18 +4,84 @@ import mysql.connector
 import csv
 from Process import DateTimeProcess,Inst_Process
 from time import time
-
+from datetime import datetime
 
 app = Flask(__name__)
 
 
-@app.route('/add-student')
+@app.route('/add-student',methods = ['POST'])
 def Add_Student ():
-    Data = request.get_json()
+    data = request.get_json()
     
-    print(Data)
-    return jsonify({'result' : True})
+    if data :
+    
+        Name = data['Name']
+        Last = data['Last']
+        Phone = data['Phone']
+        Email = data['Email']
+        Register_Number= data['Reg']
+        Institution_Name = data['Inst']
+        Course_Name = data['Course']
+        Total = data['Total']
+        Payment_Status = data['Payment'].lower()
+        Mode = data['Mode']
+    
 
+        Final = True
+        
+        if Name and Last and Phone and Email and Register_Number and Institution_Name and Course_Name and Total and Payment_Status and Mode:
+            if not "@" in Email and ".com" in Email:
+                Final = False
+                
+            if not len(Phone) >= 10 :
+                Final = False
+                
+        if Final:
+            Entry_Date = datetime.now()
+            Inst_Key = Inst_Process(Register_Number,Institution_Name).Process()
+            
+            
+            Mydb = mysql.connector.connect(
+            host = "localhost",
+            user = "root",
+            password = "admin",
+            database = 'sis'
+            
+            )
+            
+            cursor = Mydb.cursor()
+            
+            cursor.execute("SELECT First_Name FROM students WHERE Phone = %s AND Register_Number = %s ;",(Phone,Register_Number,))
+            if_data_exist = cursor.fetchall()
+                
+            if if_data_exist :
+                    pass
+                
+            else:
+            
+                cursor.execute("""INSERT INTO students (First_Name, Last_Name, Phone,
+                            Email , Register_Number, Institution_Name, Mode,Course_Name,
+                            Total, Entry_Date,Payment_Status,Inst_Key) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);""",(Name,Last,Phone,Email,Register_Number,Institution_Name,
+                            Mode,Course_Name,Total,Entry_Date,Payment_Status,Inst_Key))
+            
+                
+                Mydb.commit()
+                
+                cursor.execute('SELECT Entry_Date FROM students WHERE Phone = %s AND Register_Number = %s ;',(Phone,Register_Number,))
+                data = cursor.fetchall()
+                
+                cursor.close()
+                Mydb.close()
+                
+            
+                return jsonify({'res' : True,'date' : data[0][0]})
+        
+        else:
+            
+            return jsonify({'res' : False})
+        
+    else:
+        return jsonify({'res' : False})
 
 
 @app.route('/export-list',methods = ['POST'])

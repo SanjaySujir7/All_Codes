@@ -10,7 +10,8 @@ Students_Error_Label = document.querySelectorAll('.Input-Error-Display-Students-
 
 let Student_Add_Dropbox_Course = document.getElementById('Add-Student-Dropbox-Id'),
 Total_Input_FIeld_Student_add = document.getElementById('Select-Course-name-Add-Student-Text-Box'),
-Student_Add_Payment_Status = document.querySelectorAll('.student-add-radio-online');
+Student_Add_Payment_Status = document.querySelectorAll('.student-add-radio-online'),
+Mode_Add_STudents = document.getElementById('Add-STudents_Mode');
 
 let Check_All_List = [[Students_Add_Name,false],[Students_Add_Last,false],[Students_Add_Phone,false],[Students_Add_Email,false],
 [Students_Add_Reg,false],[Students_Add_Inst,false]]
@@ -231,7 +232,27 @@ function Students_Add_Form_Validation (){
     }
 
     if (Final){
-        ALL_Send_LIst = []
+        let Pay_radio = false;
+
+        if(Student_Add_Payment_Status[0].checked){
+            Pay_radio = 'Not Paid';
+        }
+        else{
+            Pay_radio = 'Paid';
+        }
+
+        ALL_Send_obj = {
+            Name : Students_Add_Name.value,
+            Last : Students_Add_Last.value,
+            Phone : Students_Add_Phone.value,
+            Email : Students_Add_Email.value,
+            Reg : Students_Add_Reg.value,
+            Inst : Students_Add_Inst.value,
+            Course : Student_Add_Dropbox_Course.value,
+            Total : Total_Input_FIeld_Student_add.value,
+            Mode : Mode_Add_STudents.value,
+            Payment : Pay_radio
+        }
 
         fetch('/add-student',{
             method : 'POST',
@@ -239,8 +260,19 @@ function Students_Add_Form_Validation (){
                 'Content-Type' : 'application/json'
             },
     
-            body : JSON.stringify()
+            body : JSON.stringify(ALL_Send_obj)
     
+        })
+
+        .then(res => res.json())
+
+        .then(data => {
+            if (data['res']){
+                console.log("Success");
+                Create_Div(ALL_Send_obj.Name,ALL_Send_obj.Last,ALL_Send_obj.Phone,ALL_Send_obj.Email,ALL_Send_obj.Reg,
+                    ALL_Send_obj.Inst,ALL_Send_obj.Course,ALL_Send_obj.Total,ALL_Send_obj.Mode,data['date'],ALL_Send_obj.Payment);
+            }
+
         })
     }
 }
