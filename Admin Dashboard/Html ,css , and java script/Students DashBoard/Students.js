@@ -104,7 +104,7 @@ Import_Button.addEventListener("click",function(){
 })
 
 Dialog_Import.addEventListener('click',function(){
-    Dialog_Form.submit()
+    // Dialog_Form.submit()
 })
 
 
@@ -161,4 +161,15 @@ Students_Add_Button.addEventListener("click",function(){
 
 Students_Add_CLose_Button.addEventListener('click',function(){
     Student_Add_Dialog.close();
+})
+
+// Success Dialog
+
+let Dialog_Sucess_Popup = document.getElementById('Dialog-Success-Pop-Up');
+Dialog_Import.addEventListener('click',function(){
+    Dialog_Sucess_Popup.showModal();
+    
+    setTimeout(function(){
+        Dialog_Sucess_Popup.close();
+    },1000)
 })

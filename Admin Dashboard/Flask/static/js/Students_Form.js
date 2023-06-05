@@ -13,6 +13,8 @@ Total_Input_FIeld_Student_add = document.getElementById('Select-Course-name-Add-
 Student_Add_Payment_Status = document.querySelectorAll('.student-add-radio-online'),
 Mode_Add_STudents = document.getElementById('Add-STudents_Mode');
 
+// let Student_Add_Dialog = document.getElementById('Student-add-dailog');
+
 let Check_All_List = [[Students_Add_Name,false],[Students_Add_Last,false],[Students_Add_Phone,false],[Students_Add_Email,false],
 [Students_Add_Reg,false],[Students_Add_Inst,false]]
 
@@ -184,6 +186,14 @@ function Student_Add_Inst_Check (){
     }
 }
 
+function Dialog_Sucess_Togle (){
+    Dialog_Sucess_Popup.showModal();
+
+    setTimeout(function(){
+        Dialog_Sucess_Popup.close();
+    },1500);
+}
+
 let Final = true;
 
 
@@ -268,9 +278,23 @@ function Students_Add_Form_Validation (){
 
         .then(data => {
             if (data['res']){
-                console.log("Success");
+
+                Dialog_Sucess_Togle();
+                
                 Create_Div(ALL_Send_obj.Name,ALL_Send_obj.Last,ALL_Send_obj.Phone,ALL_Send_obj.Email,ALL_Send_obj.Reg,
                     ALL_Send_obj.Inst,ALL_Send_obj.Course,ALL_Send_obj.Total,ALL_Send_obj.Mode,data['date'],ALL_Send_obj.Payment);
+                    Student_Add_Dialog.close()
+
+                    Students_Add_Name.value = "";
+                    Students_Add_Last.value = "";
+                    Students_Add_Email.value = "";
+                    Students_Add_Phone.value = "";
+                    Students_Add_Reg.value = "";
+                    Students_Add_Inst.value = "";
+                    Student_Add_Dropbox_Course.value = 'Select';
+                    Total_Input_FIeld_Student_add.value = '';
+                    Student_Add_Payment_Status[0].checked = true;
+                    Mode_Add_STudents.value = 'Offline';
             }
 
         })

@@ -189,6 +189,7 @@ def Update_Students_Data():
 
 @app.route('/get-data-csv',methods=['GET','POST'])
 def Get_Csv_Data ():
+
     filters = request.get_json()    
     College = filters[0]
     Course  = filters[1]
@@ -299,14 +300,19 @@ def Get_Csv_Data ():
 
     cursor.close()
     Mydb.close()
+    
     return jsonify(Students)
 
 
 
 @app.route('/students')
 def Students_DashBoard():
-
-    return render_template('Students.html')
+    
+    if 'Name' in session and 'Last' in session: 
+             return render_template('Students.html')
+         
+    else:
+        return redirect('/login')
 
 
 
@@ -384,17 +390,14 @@ def Import_File ():
 
 @app.route('/')
 def Admin_Page ():
-    try:
-        Name = session['Name']
-        Last = session['Last']
-        Email = session['Email']
-    
-        return render_template('admin.html')
-    
-    except:
 
-        return redirect('/login')
-
+        if 'Name' in session and 'Last' in session: 
+             return render_template('admin.html')
+         
+        else:
+            return redirect('/login')
+            
+        
 @app.route('/login')
 def index ():
     
@@ -451,7 +454,7 @@ def Login_process():
                 Pass = data[0][3]
                 
                 if Name == Name_Email.lower() and Pass == Password:
-    
+                    session.permanent = True
                     session['Name'] = data[0][0]
                     session['Last'] = data[0][1]
                     session['Email'] = data[0][2]

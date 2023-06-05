@@ -40,6 +40,8 @@ let Student_Add_Dialog = document.getElementById('Student-add-dailog'),
 Students_Add_Button = document.getElementById("Add-student-Button"),
 Students_Add_CLose_Button= document.getElementById("Add-Students-close-Dialog");
 
+let Dialog_Sucess_Popup = document.getElementById('Dialog-Success-Pop-Up');
+
 let  Filter_List = ['All', 'All', 'yyyy-MM-dd','yyyy-MM-dd','All','All']
 
 let Export_List = [];
