@@ -9,6 +9,13 @@ from datetime import datetime
 app = Flask(__name__)
 
 
+
+@app.route('/student-login')
+def Studets_Login ():
+    return render_template('Student_Login_Page.html')
+
+
+
 @app.route('/add-student',methods = ['POST'])
 def Add_Student ():
     data = request.get_json()
@@ -388,7 +395,7 @@ def Import_File ():
         return redirect('/students')
 
 
-@app.route('/')
+@app.route('/admin')
 def Admin_Page ():
 
         if 'Name' in session and 'Last' in session: 
@@ -454,7 +461,7 @@ def Login_process():
                 Pass = data[0][3]
                 
                 if Name == Name_Email.lower() and Pass == Password:
-                    session.permanent = True
+            
                     session['Name'] = data[0][0]
                     session['Last'] = data[0][1]
                     session['Email'] = data[0][2]
@@ -470,7 +477,7 @@ def Login_process():
             except:
                 pass
                 
-            return redirect('/')
+            return redirect('/admin')
         
         else:
             session['login_error'] = "Account Does not Exist !"
