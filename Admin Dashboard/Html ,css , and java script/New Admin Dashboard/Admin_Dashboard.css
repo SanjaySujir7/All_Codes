@@ -2,6 +2,15 @@ body{
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+    margin-top: 70px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+:root {
+    --Font_Color : rgb(19, 17, 17);
+    --Background_Color : #F4F5FA;
+    --Nav_Color : white;
 }
 
 .Header-Page{
@@ -10,4 +19,62 @@ body{
     left: 0px;
     right: 0px;
     height: 70px;
+    display: flex;
+    background-color:#F4F5FA;
+}
+
+.Header-Title img{
+    height: 50px;
+
+}
+
+.Header-Title{
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
+.side-Nav-toggle-head span{
+    display: block;
+    color: black;
+    width: 20px;
+    height: 3px;
+    background-color: rgba(0, 0, 0, 0.795);
+    margin-top: 3px;
+}
+
+.side-Nav-toggle-head {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.side-Nav-toggle-head:hover{
+    background-color: rgba(190, 181, 181, 0.37);
+    cursor: pointer;
+}
+
+.Side-Navigation{
+    background-color: var(--Nav_Color);
+    position: fixed;
+    top: 70px;
+    left: 0px;
+    bottom: 0px;
+    width: 200px;
+    transition: 0.2s;
+}
+
+.Main-Page{
+    height: 100%;
+    width: calc(100%-200px);
+    left: 200px;
+    position: absolute;
+    right: 0px;
+    color: var(--Font_Color);
+    background-color: var(--Background_Color);
 }
