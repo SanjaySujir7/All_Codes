@@ -4,11 +4,6 @@ body{
     background-color: whitesmoke;
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
-    background-image: url('https://github.com/SanjaySujir7/All_Codes/blob/main/20230606_163329.jpg?raw=true');
-    background-repeat: no-repeat;
-     /* background-size: cover;  */
-    /* background-position: center center;  */
-    margin-top: 80px;
 }
 
 .Header-Section{
